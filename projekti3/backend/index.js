@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
+const path = require('path');
 
 
 app.use(express.json())
 app.use(morgan('tiny'));
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'frontend_build')));
 
 
 let persons = [
@@ -91,6 +93,10 @@ app.post('/api/persons', (request, response) => {
   }
   console.log(addPerson)
   response.json(addPerson);
+});
+
+app.get('*', (request, response) => {
+  responses.sendFile(Path2D.join(__dirname, 'frontend_build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001
