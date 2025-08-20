@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
-const path = require('path');
+
 
 app.use(express.json())
 app.use(morgan('tiny'));
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'frontend_build')));
+
 
 let persons = [
     {
@@ -36,9 +36,6 @@ let persons = [
     }
 ];  
 
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'frontend_build', 'index.html'));
-});
 
 app.get( '/', (request, response) => {
     response.send('<h1>Welcome to the Phonebook API</h1>');
