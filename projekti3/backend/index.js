@@ -37,10 +37,6 @@ let persons = [
 
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.get('/', (request, response) => {
-    response.send('<h1>Welcome to the Phonebook API</h1>');
-});
-
 app.get('/api/persons', (request, response) => {
     response.json(persons[0].persons);
 });
